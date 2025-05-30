@@ -7,14 +7,14 @@ import plotly.express as px
 
 st.set_page_config(page_title="Kesari Immigration", layout="wide")
 
-# Helper to encode logo to base64
+# logo to base64
 def logo_to_base64(image):
     buffer = BytesIO()
     image.save(buffer, format="PNG")
     img_str = base64.b64encode(buffer.getvalue()).decode("utf-8")
     return img_str
 
-# Load logo
+# logo
 logo = Image.open("KESARI LOGO.png")  # Use your transparent PNG
 
 # Initialize session state
@@ -25,7 +25,7 @@ if "page" not in st.session_state:
 def go_to_dashboard():
     st.session_state.page = "dashboard"
 
-# --- PAGE 1: Master Landing Page ---
+# Landing Page
 if st.session_state.page == "home":
     # Centered logo and heading
     st.markdown(
@@ -44,7 +44,7 @@ if st.session_state.page == "home":
     with col:
         st.button("➡️ Go to Dashboard", on_click=go_to_dashboard)
 
-# --- PAGE 2: Actual Dashboard ---
+# Actual Dashboard 
 elif st.session_state.page == "dashboard":
     st.markdown(f"<div style='text-align: center;'><img src='data:image/png;base64,{logo_to_base64(logo)}' width='120'/></div>", unsafe_allow_html=True)
     st.title("Kesari Immigration Dashboard")
@@ -78,7 +78,7 @@ elif st.session_state.page == "dashboard":
     col2.metric("❌ Refused", Refused)
     col3.metric("⏳ Pending", pending)
 
-    # Sidebar view selector
+    # Sidebar
     st.sidebar.header("🎛️ View Options")
     view_choice = st.sidebar.radio("Select display type:", ["📊 Pie Chart", "📈 Bar Graph",])
     st.subheader("🔍 Decision Analysis")
