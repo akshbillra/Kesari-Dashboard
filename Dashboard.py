@@ -42,9 +42,9 @@ if st.session_state.page == "home":
     st.markdown("### ")
     col = st.columns([4, 2, 4])[1]  # Center the button
     with col:
-        st.button("Go to Dashboard", on_click=go_to_dashboard)
+        st.button("➡️ Go to Dashboard", on_click=go_to_dashboard)
 
-# --- Actual Dashboard ---
+# --- PAGE 2: Actual Dashboard ---
 elif st.session_state.page == "dashboard":
     st.markdown(f"<div style='text-align: center;'><img src='data:image/png;base64,{logo_to_base64(logo)}' width='120'/></div>", unsafe_allow_html=True)
     st.title("Kesari Immigration Dashboard")
@@ -53,10 +53,10 @@ elif st.session_state.page == "dashboard":
     unsafe_allow_html=True
 )
 
-    st.button("Home", on_click=lambda: st.session_state.update(page="home"))
+    st.button("🏠 Home", on_click=lambda: st.session_state.update(page="home"))
     
-    # data file
-    df = pd.read_excel("Book1.xlsx")
+    # Load data
+    df = pd.read_excel("data/Book1.xlsx")
     df.columns = df.columns.str.strip()
     df['Decision'] = df['Decision'].astype(str).str.strip().str.title()
     df['Decision'] = df['Decision'].replace({
@@ -68,29 +68,29 @@ elif st.session_state.page == "dashboard":
         'Na': None
     })
 
-    # display number
+    # Metrics
     approved = df[df["Decision"] == "Approved"].shape[0]
     Refused = df[df["Decision"] == "Refused"].shape[0]
     pending = df[df["Decision"] == "Decision Pending"].shape[0]
 
     col1, col2, col3 = st.columns(3)
-    col1.metric("Approved", approved)
-    col2.metric("Refused", Refused)
-    col3.metric("Pending", pending)
+    col1.metric("✅ Approved", approved)
+    col2.metric("❌ Refused", Refused)
+    col3.metric("⏳ Pending", pending)
 
-    # Sidebar
-    st.sidebar.header("View Options")
-    view_choice = st.sidebar.radio("Select display type:", ["Pie Chart", "Bar Graph",])
-    st.subheader("Decision Analysis")
+    # Sidebar view selector
+    st.sidebar.header("🎛️ View Options")
+    view_choice = st.sidebar.radio("Select display type:", ["📊 Pie Chart", "📈 Bar Graph",])
+    st.subheader("🔍 Decision Analysis")
 
-    if view_choice == "Pie Chart":
-        fig = px.pie(df, names='Decision', title='Decision Breakdown', color_discrete_sequence=px.colors.qualitative.Set3)
+    if view_choice == "📊 Pie Chart":
+        fig = px.pie(df, names='Decision', title='🧮 Decision Breakdown', color_discrete_sequence=px.colors.qualitative.Set3)
         st.plotly_chart(fig, use_container_width=True)
 
-    elif view_choice == "Bar Graph":
+    elif view_choice == "📈 Bar Graph":
         counts = df['Decision'].value_counts().reset_index()
         counts.columns = ['Decision', 'Count']
-        fig = px.bar(counts, x='Decision', y='Count', color='Decision', title='Decision Counts by Type')
+        fig = px.bar(counts, x='Decision', y='Count', color='Decision', title='📊 Decision Counts by Type')
         st.plotly_chart(fig, use_container_width=True)
 
     
