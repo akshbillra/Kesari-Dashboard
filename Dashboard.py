@@ -56,7 +56,7 @@ elif st.session_state.page == "dashboard":
     st.button("Home", on_click=lambda: st.session_state.update(page="home"))
     
     # data file
-    df = pd.read_excel("Book1.xlsx")
+    df = pd.read_excel("data/Book1.xlsx")
     df.columns = df.columns.str.strip()
     df['Decision'] = df['Decision'].astype(str).str.strip().str.title()
     df['Decision'] = df['Decision'].replace({
