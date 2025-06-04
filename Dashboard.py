@@ -39,8 +39,7 @@ if st.session_state.page == "home":
         unsafe_allow_html=True
     )
     st.markdown("### ")
-    st.markdown("### ")
-    col = st.columns([4, 2, 4])[1]  # Center the button
+    col = st.columns([4, 2, 3])[1]  # Center the button
     with col:
         st.button("➡️ Go to Dashboard", on_click=go_to_dashboard)
 
