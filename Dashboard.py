@@ -33,7 +33,7 @@ if st.session_state.page == "home":
         <div style='text-align: center;'>
             <img src='data:image/png;base64,{logo_to_base64(logo)}' width='200'/>
             <h1 style='color: #1f4e79;'>Kesari Immigration</h1>
-            <p style='font-size: 18px; color: gray;'>Canadian Immigration | Canadian Citizenship | Canadian Education.</p>
+            <p style='font-size: 18px; color: gray;'> Canadian Immigration | Canadian Citizenship | Canadian Education.</p>
         </div>
         """,
         unsafe_allow_html=True
