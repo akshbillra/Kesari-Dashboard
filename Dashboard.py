@@ -53,7 +53,8 @@ elif st.session_state.page == "dashboard":
     "<title style='text-align: center; color: #1f4e79;'> Kesari Immigration Dashboard</title>",
     unsafe_allow_html=True
 )
-
+col = st.columns([4,2,3])[1]
+with col:
     st.button("🏠 Home", on_click=lambda: st.session_state.update(page="home"))
     
     # Load data
