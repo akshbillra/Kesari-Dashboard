@@ -47,14 +47,10 @@ if st.session_state.page == "home":
 elif st.session_state.page == "dashboard":
     st.markdown(f"<div style='text-align: center;'><img src='data:image/png;base64,{logo_to_base64(logo)}' width='120'/></div>", unsafe_allow_html=True)
     st.title("Kesari Immigration Dashboard")
-    col = st.columns([4, 2, 3])[1] 
-    with col:
     st.markdown(
     "<title style='text-align: center; color: #1f4e79;'> Kesari Immigration Dashboard</title>",
     unsafe_allow_html=True
 )
-col = st.columns([4,2,3])[1]
-with col:
     st.button("🏠 Home", on_click=lambda: st.session_state.update(page="home"))
     
     # Load data
